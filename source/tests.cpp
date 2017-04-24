@@ -46,9 +46,17 @@ int sumMultiples(int a, int b){
 	return sum;
 }
 
-//Aufgabe 1.11----------------
+//Aufgabe 1.11 Fraction Anteil---------------------------------------
+
+int fract(float frac)
+{
+    double integer, value = frac, fraction = modf(value, &integer);
+    return fraction;
+}
+
 
 //Aufgabe 1.12 The Volume and Area of a Cylinder----------------------
+
 float Volume(int r, int h){ 
 float Volume = (Pi * (r * r) * h);
 	return Volume;
@@ -144,6 +152,14 @@ TEST_CASE("is_prime","[is_prime]")
 	REQUIRE( is_prime(149) == true );
 	REQUIRE( is_prime(10) == false );
 }
+
+TEST_CASE("fract","[fract]")
+{
+	REQUIRE(7.009999 == Approx( 7.01 ).epsilon(0.001));
+	REQUIRE(0.009999 == Approx( 0.01 ).epsilon(0.001));
+	REQUIRE(1.9999 == Approx( 2.0 ).epsilon(0.001));
+}
+
 
 //---------------------------main function-------------------
 
