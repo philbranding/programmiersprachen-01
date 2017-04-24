@@ -1,7 +1,8 @@
 #define CATCH_CONFIG_RUNNER
 #include <catch.hpp>
 
-float Pi = 3.14159265;
+
+float Pi = 3.14159265; 
 int Two = 2;
 
 //Aufgabe 1.8 GCD Funktion Implementation ---------------------------
@@ -59,8 +60,42 @@ float Area(int r, int h){
 	return Area;
 }
 
+//Aufgabe 1.13 The Factorial Funktion----------------------------------
 
-// -------------------THE TEST CASES-------------------------
+int factorial(int n)
+{
+    if(n > 1)
+        return n * factorial(n - 1);
+    else
+        return 1;
+}
+
+//Aufgabe 1.14 The Binomial Funktion----------------------------------
+
+double binomial(double nValue, double nValue2)
+{
+    double result;
+  	if(nValue2 == 1)
+  		return nValue;
+     	result = (factorial(nValue))/(factorial(nValue2)*factorial((nValue - nValue2)));
+       	nValue2 = result;
+       	return nValue2;
+   }
+
+//Augfabe 1.15 The Prime Number Fuction-------------------------------
+
+bool is_prime(int a)
+{
+    int count=0;
+    for(int i=2;i<sqrt(a);i++)
+    {
+        if(a%i==0)
+        {count++;}
+    }
+    if(a==1||count!=0) return false;
+    else return true;
+}
+// -------------------------THE TEST CASES----------------------------
 
 TEST_CASE("describe_gcd ","[gcd]")
 {
@@ -87,6 +122,27 @@ TEST_CASE("cylinder","[cylinder]")
 {
 	REQUIRE( Volume (3,5) == 141.37167f);
 	REQUIRE( Area (3,5) == 150.79645f);
+}
+
+TEST_CASE("factorial","[factorial]")
+{
+	REQUIRE( factorial(4) == 24 );
+	REQUIRE( factorial(6) == 720 );
+	REQUIRE( factorial(10) == 3628800 );
+}
+
+TEST_CASE("binomial","[binomial]")
+{
+	REQUIRE( binomial (5,3) == 10);
+	REQUIRE( binomial (5,4) == 5);
+	REQUIRE( binomial (10,3) == 120);
+}
+
+TEST_CASE("is_prime","[is_prime]")
+{
+	REQUIRE( is_prime(5) == true );
+	REQUIRE( is_prime(149) == true );
+	REQUIRE( is_prime(10) == false );
 }
 
 //---------------------------main function-------------------
